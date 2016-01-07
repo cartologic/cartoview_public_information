@@ -1,9 +1,14 @@
-define({
+''' This configuration copied and removed from esri template configuration file ex.(defaults.js), it is the
+ configuration file in most esri templates.).
+ webmapid, title , description and sharinghosturl are removed from this configuration and to be appended dynamically
+ with proper and friendly GUI.'''
+
+# sample esri template configuration	
+config_template = '''{
   //Default configuration settings for the applciation. This is where you"ll define things like a bing maps key,
   //default web map, default app color theme and more. These values can be overwritten by template configuration settings
   //and url parameters.
   "appid": "",
-  "webmap": "4b762458c7994fc08b4994a2dc76e9fc",
   "oauthappid": null,
   //Enter the url to the proxy if needed by the applcation. See the "Using the proxy page" help topic for details
   //developers.arcgis.com/en/javascript/jshelp/ags_proxy.html
@@ -67,22 +72,21 @@ define({
   "youtubeTime": "all_time", // today, this_week, this_month, all_time
   "bitlyLogin": "arcgis",
   "bitlyKey": "R_b8a169f3a8b978b9697f64613bf1db6d",
-  "twitterUrl": location.protocol + "//utility.arcgis.com/tproxy/proxy/1.1/search/tweets.json",
-  "twitterSigninUrl": location.protocol + "//utility.arcgis.com/tproxy/signin",
+  "twitterUrl": "http://utility.arcgis.com/tproxy/proxy/1.1/search/tweets.json",
+  "twitterSigninUrl": "http://utility.arcgis.com/tproxy/signin",
   "flickr_key": "404ebea7d5bc27aa5251d1207620e99b",
   "webcams_key": "65939add1ebe8bc9cc4180763f5df2ca",
   "instagram_key": "288c36a1a42c49de9a2480a05d054619",
   "youtube_key": "AIzaSyBvrlsx50mxX_W-Ra2cJ8PB0jKt0jACZfg",
   /*
-    "bannedUsersService": location.protocol + "//services.arcgis.com/QJfoC7c7Z2icolha/ArcGIS/rest/services/fai/FeatureServer/2",
-    "bannedWordsService": location.protocol + "//tmservices1.esri.com/ArcGIS/rest/services/SharedTools/Filter/MapServer/1",
-    "flagMailServer": location.protocol + "//tmappsevents.esri.com/Website/pim_fai/fai.php",
+    "bannedUsersService": "http://services.arcgis.com/QJfoC7c7Z2icolha/ArcGIS/rest/services/fai/FeatureServer/2",
+    "bannedWordsService": "http://tmservices1.esri.com/ArcGIS/rest/services/SharedTools/Filter/MapServer/1",
+    "flagMailServer": "http://tmappsevents.esri.com/Website/pim_fai/fai.php",
     */
   //Enter the url to your organizations bing maps key if you want to use bing basemaps
   "bingmapskey": "",
   //Defaults to arcgis.com. Set this value to your portal or organization host name.
-  "sharinghost": location.protocol + "//" + "www.arcgis.com",
-  //When true the template will query arcgis.com for default settings for helper services, units etc. If you 
+  //When true the template will query arcgis.com for default settings for helper services, units etc. If you
   "units": null,
   "helperServices": {
     "geometry": {
@@ -98,4 +102,4 @@ define({
       "url": null
            }]
   }
-});
+}'''

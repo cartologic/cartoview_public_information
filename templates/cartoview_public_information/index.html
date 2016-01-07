@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,36 +15,36 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <!-- End Responsive -->
     <!-- Mobile -->
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="{% static 'cartoview_public_information/images/apple-touch-icon.png' %}" />
     <!-- SEO -->
     <meta name="Keywords" content="Public Information Map, Map, Esri" />
     <meta name="Description" content="A fully configurable and responsive web mapping application that highlights areas of interest through data, map notes, and/or social content to a wide audience." />
     <!-- End SEO -->
     <!-- Facebook -->
     <meta property="og:title" content="Public Information Map" />
-    <meta property="og:image" content="images/item.png" />
+    <meta property="og:image" content="{% static 'cartoview_public_information/images/item.png' %}" />
     <meta property="og:site_name" content="esri" />
     <!-- End Facebook -->
     <!--Use protocol relative urls that way if the browser is viewing the page via HTTPS the js/css file will be requested using the HTTPS protocol-->
     <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.15/esri/css/esri.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:300,400,700" />
     <!--Load any application specific styles-->
-    <link rel="stylesheet" type="text/css" href="css/dijit.css" />
-    <link rel="stylesheet" type="text/css" href="css/fontello.css" />
-    <link rel="stylesheet" type="text/css" href="css/HomeButton.css" />
-    <link rel="stylesheet" type="text/css" href="css/LocateButton.css" />
-    <link rel="stylesheet" type="text/css" href="css/SimpleSlider.css" />
-    <link rel="stylesheet" type="text/css" href="css/popup.css" />
-    <link rel="stylesheet" type="text/css" href="css/dialogs.css" />
-    <link rel="stylesheet" type="text/css" href="css/geocoder.css" />
-    <link rel="stylesheet" type="text/css" href="css/ShareDialog.css" />
-    <link rel="stylesheet" type="text/css" href="css/FlickrLayer.css" />
-	<link rel="stylesheet" type="text/css" href="css/TwitterLayer.css" />
-	<link rel="stylesheet" type="text/css" href="css/WebcamsLayer.css" />
-	<link rel="stylesheet" type="text/css" href="css/InstagramLayer.css" />
-    <link rel="stylesheet" type="text/css" href="css/YoutubeLayer.css" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/fontello-ie7.css" /><![endif]-->
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/dijit.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/fontello.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/HomeButton.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/LocateButton.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/SimpleSlider.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/popup.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/dialogs.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/geocoder.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/ShareDialog.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/FlickrLayer.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/TwitterLayer.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/WebcamsLayer.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/InstagramLayer.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/YoutubeLayer.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/main.css' %}" />
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{% static 'cartoview_public_information/css/fontello-ie7.css' %}" /><![endif]-->
 </head>
 <body class="calcite app-loading">
     <!--The ArcGIS API for JavaScript provides bidirectional support.  When viewing the application in an right to left (rtl) language like Hebrew and Arabic the map needs to remain in left-to-right (ltr) mode. Specify this by setting the dir attribute on the div to ltr. -->
@@ -94,7 +96,9 @@
         </div>
     </div>
     <script type="text/javascript">
-        var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+        var config_json = {{ config_json|safe }};
+        var STATIC_URL = '{% static "cartoview_public_information/" %}'
+        var package_path = STATIC_URL;
         var dojoConfig = {
             async: true,
             //The location.pathname.replace() logic below may look confusing but all its doing is
@@ -157,6 +161,6 @@
             s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <!--[if lt IE 9]><script type="text/javascript" src="js/respond.min.js"></script><![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="{% static 'cartoview_public_information/js/respond.min.js' %}"></script><![endif]-->
 </body>
 </html>
