@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 from cartoview.app_manager.models import *
 from forms import BasicAppForm
-from geonode import settings
+from django.conf import settings
 from .models import *
 from . import APP_NAME
 
