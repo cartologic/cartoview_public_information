@@ -1,5 +1,5 @@
 {% extends "site_base.html" %}
-{% load i18n staticfiles bootstrap %}
+{% load i18n staticfiles bootstrap3 %}
 
 
 {% block title %} {{ block.super }} {% endblock %}
@@ -54,12 +54,11 @@
 
                     </div>
                     <div class="tab-pane" id="tab_general">
-                        {{ app_form.title|bootstrap }}
-                        {{ app_form.abstract|bootstrap }}
-                        {{ app_form.keywords|bootstrap }}
+                        {%  bootstrap_field app_form.title %}
+                        {%  bootstrap_field app_form.abstract %}
                     </div>
                     <div class="tab-pane" id="tab_configuration">
-                        {{ app_form.config|bootstrap }}
+                        {%  bootstrap_field app_form.config %}
                     </div>
                 </div><!-- tab content -->
                 <div id="load" class="form-group">
