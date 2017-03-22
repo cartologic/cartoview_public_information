@@ -1,4 +1,3 @@
-from django.contrib.contenttypes.models import ContentType
 
 # This info object used by cartoview app manager to show app details in the app list
 info = {
@@ -18,5 +17,4 @@ def install():
 
 
 def uninstall():
-    ContentType.objects.filter(app_label="cartoview_public_information").delete()
-    # add any extra app uninstall logic
+    pass

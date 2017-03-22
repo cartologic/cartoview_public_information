@@ -1,1 +1,1 @@
-define(config_json);
+define(window.config_json);

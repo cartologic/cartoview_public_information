@@ -56,5 +56,4 @@ docs/_build/
 # PyBuilder
 target/
 
-# cartoview app libs folder
-cartoview_arcgis_feature_server/libs/
+node_modules/
