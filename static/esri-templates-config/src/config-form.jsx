@@ -79,6 +79,9 @@ class App extends React.Component{
           <Pager.Item href="#" disabled={activeTab==configurationPanel.configurationSettings.length - 1} onClick={(e) => setActiveTab(activeTab + 1)}>Next</Pager.Item>
           { ' ' }
           <Button bsStyle="primary" onClick={(e) => this.save()}><Glyphicon glyph="floppy-disk" /> Save</Button>
+          { ' ' }
+          {!this.props.isNew && <a className="btn btn-info" href="../view/"><Glyphicon glyph="view" /> View</a>}
+          { ' ' }
           {saving && <span className="text-info"> <Glyphicon className="icon-animate" glyph="refresh" /> Saving...</span>}
         </Pager>
 
@@ -108,10 +111,11 @@ class App extends React.Component{
       </FormGroup>;
     }
 
-    var value = this.state.values[field.fieldName] || defaultValue;
+    var value = this.state.values.hasOwnProperty(field.fieldName) ? this.state.values[field.fieldName] : defaultValue;
     var validationState = this.state.errors[field.fieldName] ? "error" : null;
     const onChange = (e) => {
         if(field.type == "boolean"){
+          console.log(e.target.checked);
           this.state.values[field.fieldName] = e.target.checked;
         }
         else{
