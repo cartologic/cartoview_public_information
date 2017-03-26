@@ -1,0 +1,7 @@
+.btn-color-picker {
+    border-radius: 0;
+    margin: 0 10px;
+}
+.color-picker-popover .popover-content{
+  padding: 0;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import ColorPicker from "./components/ColorPicker.jsx"
 import WebMapPicker from "./components/WebMapPicker.jsx"
 import LayerAndFieldSelector from "./components/LayerAndFieldSelector.jsx"
 import MultilayerAndFieldSelector from "./components/MultilayerAndFieldSelector.jsx"
@@ -64,7 +65,9 @@ class App extends React.Component{
               configurationPanel.configurationSettings.map((fieldset, index) => {
                 return <Tab.Pane eventKey={index}>
                   <h3 dangerouslySetInnerHTML={{__html:fieldset.category}} ></h3>
-                  {fieldset.fields.map((f) => { return this.getField(f, defaultValues[f.fieldName]) })}
+                  {fieldset.fields.map((f, index) => {
+                    return <div key={index}>{this.getField(f, defaultValues[f.fieldName]) } </div>;
+                  })}
                 </Tab.Pane>
               })
             }
@@ -161,6 +164,14 @@ class App extends React.Component{
         {validationState && <HelpBlock>{this.state.errors[field.fieldName]}</HelpBlock>}
       </FormGroup>);
     }
+    else if (field.type == "number"){
+      const constraints = field.constraints || {}
+      fieldEl = (<FormGroup validationState={validationState}>
+        <ControlLabel>{field.label}</ControlLabel>
+        <FormControl {...constraints} type="number" placeholder={field.label} value={value} onChange={onChange}/>
+        {validationState && <HelpBlock>{this.state.errors[field.fieldName]}</HelpBlock>}
+      </FormGroup>);
+    }
 
     else if(field.type == "webmap"){
       field.fieldName = "webmap";
@@ -180,6 +191,9 @@ class App extends React.Component{
     }
     else if(field.type.toLowerCase() == "multilayerandfieldselector"){
       fieldEl = <MultilayerAndFieldSelector field={field} value={value} mapData={this.state.mapData} onChange={onChange}/>
+    }
+    else if(field.type.toLowerCase() == "color"){
+      fieldEl = <ColorPicker label={field.label} validationState={validationState} value={value} onChange={onChange}/>
     }
     else{
       fieldEl = <div className="well">
