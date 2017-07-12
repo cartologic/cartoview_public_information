@@ -40,7 +40,10 @@
     "react-dazzle": "^1.2.4",
     "react-dom": "^15.3.2",
     "react-draggable": "^2.1.1",
+    "react-image": "^1.0.1",
     "react-modal": "^1.6.5",
+    "react-paginate": "^4.4.3",
+    "react-spinkit": "^3.0.0",
     "react-tap-event-plugin": "^1.0.0"
   },
   "peerDependencies": {
@@ -85,5 +88,10 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }

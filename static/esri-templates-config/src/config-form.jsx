@@ -81,7 +81,7 @@ class App extends React.Component{
           {' '}
           <Pager.Item href="#" disabled={activeTab==configurationPanel.configurationSettings.length - 1} onClick={(e) => setActiveTab(activeTab + 1)}>Next</Pager.Item>
           { ' ' }
-          <Button bsStyle="primary" onClick={(e) => this.save()}><Glyphicon glyph="floppy-disk" /> Save</Button>
+          <Button bsStyle="primary" onClick={(e) => this.save()}><i className="fa fa-floppy-o"></i> Save</Button>
           { ' ' }
           {!this.props.isNew && <a className="btn btn-info" href="../view/"><Glyphicon glyph="view" /> View</a>}
           { ' ' }
