@@ -43,7 +43,7 @@ module.exports = {
         }
       }),
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'commons', filename: 'commons.js'
+        name: 'commons', filename: 'commons.min.js'
       }),
       // new webpack.optimize.UglifyJsPlugin({
       //   compressor: {

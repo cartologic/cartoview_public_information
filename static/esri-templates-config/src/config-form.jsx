@@ -19,7 +19,8 @@ class App extends React.Component{
     this.state = {
       values: props.config || {},
       activeTab: 0,
-      errors: {}
+      errors: {},
+      message:""
     }
   }
   hasErrors(){
@@ -81,7 +82,7 @@ class App extends React.Component{
           {' '}
           <Pager.Item href="#" disabled={activeTab==configurationPanel.configurationSettings.length - 1} onClick={(e) => setActiveTab(activeTab + 1)}>Next</Pager.Item>
           { ' ' }
-          <Button bsStyle="primary" onClick={(e) => this.save()}><i className="fa fa-floppy-o"></i> Save</Button>
+          <Button bsStyle="primary" onClick={(e) => this.save()}><i className="fa fa-floppy-o"></i> Save</Button><span className="text-danger"> {this.state.message}</span>
           { ' ' }
           {!this.props.isNew && <a className="btn btn-info" href="../view/"><Glyphicon glyph="view" /> View</a>}
           { ' ' }
@@ -229,7 +230,8 @@ class App extends React.Component{
         if(this.props.isNew) window.location = "../" + resJson.id + "/edit/";
       }
       else{
-        this.setState({errors: resJson.errors})
+        this.setState({errors: resJson.errors,
+        message:"Please Fill All Required Data"})
       }
     });
   }

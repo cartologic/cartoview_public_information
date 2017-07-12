@@ -579,7 +579,7 @@
       ]
     },
     {
-      "category":"Search Settings",
+      "category":"<b>Search Settings</b>",
       "fields":[
         {
           "type":"paragraph",

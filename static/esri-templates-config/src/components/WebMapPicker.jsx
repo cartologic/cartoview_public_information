@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import {Button, Modal} from 'react-bootstrap';
+import {Button, Modal, Col, Row,ListGroup,ListGroupItem} from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 import Img from 'react-image';
 import Spinner from 'react-spinkit'
@@ -42,15 +42,18 @@ class WebMapPicker extends React.Component {
   loadMaps(page) {
     console.log(page);
     this.setState({loading: true});
-    const itemsPerPage = 6;
+    const itemsPerPage = this.props.itemsPerPage || 9;
     const params = {
       q: '(group:"2f0ec8cb03574128bd673cefab106f39")  -type:"Attachment"', //TODO remove static query.
-      start: page ==0 ? 1 : (page  * itemsPerPage)+1,
+      start: page == 0
+        ? 1
+        : (page * itemsPerPage) + 1,
       num: itemsPerPage
     }
     var query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
     var url = this.props.portalHomeUrl + "sharing/rest/search?" + query;
     fetch(url, {credentials: 'include'}).then(res => res.json()).then((data) => {
+      console.log(data.results[0]);
       this.setState({
         items: data.results,
         pageCount: Math.ceil(data.total / itemsPerPage),
@@ -77,7 +80,7 @@ class WebMapPicker extends React.Component {
     return <div className="cv-picker">
       <div>
         {selected && mapData && <div>
-          <img src={mapData.item.thumbnail}/>
+          <Img className="resource-box-img img-responsive" src={[mapData.item.thumbnail, "/static/app_manager/img/no-image.jpg"]}/>
           <h4 className="list-group-item-heading">{mapData.item.title}</h4>
         </div>
 }
@@ -95,8 +98,18 @@ class WebMapPicker extends React.Component {
           <div className="list-group">
             {!loading && items && items.map((item) => {
               return <PickerItem key={item.id} selected={selected == item.id} onClick={(e) => this.value = item.id}>
-                <Img className="resource-box-img" src={[item.thumbnail, "/static/app_manager/img/no-image.jpg"]}/>
-                <h4 className="list-group-item-heading">{item.title}</h4>
+                <Row>
+                  <Col md={4}><Img className="resource-box-img img-responsive" src={[item.thumbnail, "/static/app_manager/img/no-image.jpg"]}/>
+                  </Col>
+                  <Col md={8}>
+                    <ListGroup>
+                      <ListGroupItem><span className="text-info">title: {item.title}</span></ListGroupItem>
+                      <ListGroupItem><span className="text-info">owner: {item.owner}</span></ListGroupItem>
+                      <ListGroupItem><span className="text-info">abstract: {item.description.length>30 ? item.description.substr(0,30) : item.description}</span></ListGroupItem>
+                    </ListGroup>
+                  </Col>
+                </Row>
+
               </PickerItem>
             })
 }
